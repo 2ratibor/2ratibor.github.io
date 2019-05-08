@@ -7,44 +7,44 @@
 
 	<title>MiniGame</title>
 
-	<link href="style.291f8b972d9b6a3ecfd4.css?a05c95e69331cb1a9c33" type="text/css" rel="stylesheet">
+	<link href="style.f81daba9891d7a5cb9b0.css?1de3de14b0cd35a5fb2b" type="text/css" rel="stylesheet">
 
-	<script src="main.f1905f14ececbf906076.js?a05c95e69331cb1a9c33" type="text/javascript"></script>
+	<script src="main.f1905f14ececbf906076.js?1de3de14b0cd35a5fb2b" type="text/javascript"></script>
 </head>
+
 <body>
+	<div class="container" id="game_container">
+		<header class="game-header">
+			<h1 class="game-score-title">
+				Счет
+			</h1>
 
-<div class="container" id="game_container">
-	<header class="game-header">
-		<h1 class="game-score-title">
-			Счет
-		</h1>
+			<ul class="game-score-counter clearfix">
+				<li class="game-score-counter-i game-score-counter-num" name="player_score">0</li>
+				<li class="game-score-counter-i game-score-counter-separator">:</li>
+				<li class="game-score-counter-i game-score-counter-num" name="computer_score">0</li>
+			</ul>
 
-		<ul class="game-score-counter clearfix">
-			<li class="game-score-counter-i game-score-counter-num" name="player_score">0</li>
-			<li class="game-score-counter-i game-score-counter-separator">:</li>
-			<li class="game-score-counter-i game-score-counter-num" name="computer_score">0</li>
-		</ul>
+			<ul class="game-score-text">
+				<li class="game-score-text-i">игрок</li>
+				<li class="game-score-text-i">/</li>
+				<li class="game-score-text-i">компьютер</li>
+			</ul>
+		</header>
 
-		<ul class="game-score-text">
-			<li class="game-score-text-i">игрок</li>
-			<li class="game-score-text-i">/</li>
-			<li class="game-score-text-i">компьютер</li>
-		</ul>
-	</header>
+		<ul class="game-field-l clearfix" name="game_field"></ul>
 
-	<ul class="game-field-l clearfix" name="game_field"></ul>
+		<div class="game-f clearfix">
+			<span class="btn-link btn-link-blue game-f-btn disabled">
+				<a href="#" class="btn-link-i" name="game_start_btn">
+					Начать
+				</a>
+			</span>
 
-	<div class="game-f clearfix">
-		<span class="btn-link btn-link-blue game-f-btn disabled">
-			<a href="#" class="btn-link-i" name="game_start_btn">
-				Начать
-			</a>
-		</span>
-
-		<div class="game-f-input-wrap">
-			<input type="text" class="input-text game-f-input" placeholder="Укажите время шага (мс)" name="player_time_input">
+			<div class="game-f-input-wrap">
+				<input type="text" class="input-text game-f-input" placeholder="Укажите время шага (мс)" name="player_time_input">
+			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>
