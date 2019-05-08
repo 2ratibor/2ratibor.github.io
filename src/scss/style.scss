@@ -1,0 +1,9 @@
+/*{* COMMENT *}*/
+div {
+	background: linear-gradient(to left, black, white);
+	transform: rotate(180deg);
+	transition: transform 300ms ease-out;
+	display: flex;
+	user-select: none;
+	font-size: 13px;
+}

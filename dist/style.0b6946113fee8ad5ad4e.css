@@ -1,0 +1,1 @@
+div{background:linear-gradient(270deg,#000,#fff);-webkit-transform:rotate(180deg);transform:rotate(180deg);transition:-webkit-transform .3s ease-out;transition:transform .3s ease-out;transition:transform .3s ease-out,-webkit-transform .3s ease-out;display:flex;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;font-size:13px}
