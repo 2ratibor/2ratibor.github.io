@@ -1,0 +1,69 @@
+/*{* BUTTONS *}*/
+.btn-link {
+	display: inline-block;
+	position: relative;
+	border: 0;
+	outline: 0em;
+	border-radius: 4px;
+	vertical-align: middle;
+	background-clip: padding-box;
+	cursor: pointer;
+	&.disabled {
+		background: #4c4c4c;
+		cursor: default;
+		.btn-link-i {
+			color: #737373;
+			cursor: default;
+			&:link,
+			&:visited {
+				color: #737373;
+			}
+		}
+		&:hover {
+			background: #4c4c4c;
+			.btn-link-i {
+				color: #737373;
+				&:link,
+				&:visited {
+					color: #737373;
+				}
+			}
+		}
+	}
+}
+
+.btn-link-i {
+	display: inline-block;
+	position: relative;
+	border: 0;
+	outline: none;
+	color: #4d4b4b;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	background: none;
+	cursor: pointer;
+	z-index: 1;
+	&:link,
+	&:visited {
+		color: #4d4b4b;
+	}
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+/*{* BTN-LINK-BLUE *}*/
+.btn-link-blue {
+	background: #3e77aa;
+	.btn-link-i {
+		color: #fff;
+		&:link,
+		&:visited {
+			color: #fff;
+		}
+	}
+	&:hover {
+		background: #5594cb;
+	}
+}

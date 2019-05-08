@@ -1,9 +1,50 @@
-<html>
-	<head>
-		<link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
-	</head>
-	<body>
-		<div>Hello, world!</div>
-		<script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
-	</body>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>MiniGame</title>
+
+	<link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
+
+	<script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+</head>
+<body>
+
+<div class="container" id="game_container">
+	<header class="game-header">
+		<h1 class="game-score-title">
+			Счет
+		</h1>
+
+		<ul class="game-score-counter clearfix">
+			<li class="game-score-counter-i game-score-counter-num" name="player_score">0</li>
+			<li class="game-score-counter-i game-score-counter-separator">:</li>
+			<li class="game-score-counter-i game-score-counter-num" name="computer_score">0</li>
+		</ul>
+
+		<ul class="game-score-text">
+			<li class="game-score-text-i">игрок</li>
+			<li class="game-score-text-i">/</li>
+			<li class="game-score-text-i">компьютер</li>
+		</ul>
+	</header>
+
+	<ul class="game-field-l clearfix" name="game_field"></ul>
+
+	<div class="game-f clearfix">
+		<span class="btn-link btn-link-blue game-f-btn disabled">
+			<a href="#" class="btn-link-i" name="game_start_btn">
+				Начать
+			</a>
+		</span>
+
+		<div class="game-f-input-wrap">
+			<input type="text" class="input-text game-f-input" placeholder="Укажите время шага (мс)" name="player_time_input">
+		</div>
+	</div>
+</div>
+</body>
 </html>
