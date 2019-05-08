@@ -1,6 +1,7 @@
 import './scss/style.scss';
 import { MiniGame } from "./js/mini-game.class";
 
+
 window.onload = () => {
 
 	new MiniGame({
