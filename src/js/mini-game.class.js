@@ -338,8 +338,6 @@ export class MiniGame {
 
 		popup_container_inner = this.score_popup.getPopup().querySelector('[name=popup_container_inner]');
 
-		popup_container_inner.classList.add(this.fireworks_container_css_class);
-
 		popup_container_inner.insertBefore(fireworks_block_after, popup_container_inner.firstElementChild);
 
 		popup_container_inner.insertBefore(fireworks_block_before, popup_container_inner.firstElementChild);
@@ -376,12 +374,21 @@ export class MiniGame {
 
 	scorePopupShow() {
 
-		let data = this.getScoreData(),
+		let popup_container_inner = this.score_popup.getPopup().querySelector('[name=popup_container_inner]'),
+			data = this.getScoreData(),
 			popup_content = `
 				<h2 class="game-score-popup-header">
 					Со счетом ${data.score} побеждает ${data.winner}!
 				</h2>
 			`;
+
+		if (data.winner === 'игрок') {
+
+			popup_container_inner.classList.add(this.fireworks_container_css_class);
+		} else {
+
+			popup_container_inner.classList.remove(this.fireworks_container_css_class);
+		}
 
 		this.score_popup.setContent(popup_content);
 
