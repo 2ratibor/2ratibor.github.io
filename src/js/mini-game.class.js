@@ -408,9 +408,7 @@ export class MiniGame {
 
 	gameFieldClear() {
 
-		let activatedCells = this.field_cells.filter(elem => elem.hasAttribute('data-active'));
-
-		for (let cell of activatedCells) {
+		for (let cell of this.field_cells) {
 
 			cell.removeAttribute('data-active');
 		}
