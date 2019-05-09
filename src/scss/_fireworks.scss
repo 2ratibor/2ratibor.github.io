@@ -50,7 +50,7 @@ $box-shadow2: ();
 	}
 }
 
-.pyro > .before, .pyro > .after {
+.fireworks-container > .fireworks-block-before, .fireworks-container > .fireworks-block-after {
 	position: absolute;
 	width: 5px;
 	height: 5px;
@@ -59,7 +59,7 @@ $box-shadow2: ();
 	animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
 }
 
-.pyro > .after {
+.fireworks-container > .fireworks-block-after {
 	animation-delay: 1.25s, 1.25s, 1.25s;
 	animation-duration: 1.25s, 1.25s, 6.25s;
 }

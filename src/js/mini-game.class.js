@@ -1,3 +1,5 @@
+import { ModalWindow } from "./modal-window.class";
+
 export class MiniGame {
 	constructor(options) {
 
@@ -6,6 +8,12 @@ export class MiniGame {
 		this.field_cell_number = options.field_cell_number;
 
 		this.points_to_victory = options.points_to_victory;
+
+		this.fireworks_container_css_class = options.fireworks_container_css_class;
+
+		this.fireworks_block_before_css_class = options.fireworks_block_before_css_class;
+
+		this.fireworks_block_after_css_class = options.fireworks_block_after_css_class;
 
 		this.game_container = null;
 
@@ -21,13 +29,9 @@ export class MiniGame {
 
 		this.field_cells = [];
 
-		this.popup = null;
+		this.score_popup = null;
 
-		this.popup_is_visible = false;
-
-		this.can_close_popup = false;
-
-		this.can_close_popup_timer = null;
+		this.message_popup = null;
 
 		this.initElements();
 
@@ -57,7 +61,7 @@ export class MiniGame {
 
 			let target = event.target;
 
-			if (target.classList.contains('game-field-l-i-link')) {
+			if (target.getAttribute('name') === 'game_field_link') {
 
 				event.preventDefault();
 			}
@@ -113,6 +117,8 @@ export class MiniGame {
 		link.setAttribute('href', '#');
 
 		link.className = 'game-field-l-i-link';
+
+		link.name = 'game_field_link';
 
 		link.innerHTML = '&nbsp;';
 
@@ -223,7 +229,17 @@ export class MiniGame {
 			random_element = null,
 			user_activated_elem = false;
 
-		if (!filtered_field_cells.length) return;
+		if (!filtered_field_cells.length) {
+
+			if (!this.message_popup) {
+
+				this.createMessagePopup();
+			}
+
+			this.showMessagePopup();
+
+			return;
+		}
 
 		random_element = this.getUniqueRandomElement(filtered_field_cells);
 
@@ -237,7 +253,7 @@ export class MiniGame {
 
 			random_element.setAttribute('data-active', 'green');
 
-			this.player_score.innerHTML = +this.player_score.innerHTML + 1;
+			this.increaseScore(this.player_score);
 		};
 
 		setTimeout(() => {
@@ -248,7 +264,7 @@ export class MiniGame {
 
 				random_element.setAttribute('data-active', 'red');
 
-				this.computer_score.innerHTML = +this.computer_score.innerHTML + 1;
+				this.increaseScore(this.computer_score);
 			}
 
 			if (+this.player_score.innerHTML < this.points_to_victory && +this.computer_score.innerHTML < this.points_to_victory) {
@@ -256,12 +272,9 @@ export class MiniGame {
 				this.makeStep();
 			} else {
 
-				if (!this.popup) {
+				if (!this.score_popup) {
 
 					this.createScorePopup();
-				} else {
-
-					this.updateScorePopup();
 				}
 
 				this.scorePopupShow();
@@ -269,138 +282,86 @@ export class MiniGame {
 		}, +this.player_time_input.value);
 	}
 
+	createMessagePopup() {
+
+		let popup_content = `
+				<h3 class="message-popup-header">
+					Игра окончена вничью, так как ни один из игроков не набрал нужного количества очков
+				</h3>
+			`;
+
+		this.message_popup = new ModalWindow({
+			popup_type: 'message_popup',
+			popup_css_class: 'message-popup'
+		});
+
+		this.message_popup.setContent(popup_content);
+
+		document.addEventListener('closepopup', (event) => {
+
+			if (event.detail.popup_type === 'message_popup') {
+
+				this.resetGame();
+			}
+		});
+	}
+
+	showMessagePopup() {
+
+		this.message_popup.open();
+	}
+
 	getUniqueRandomElement(filtered_field_cells) {
 
 		return filtered_field_cells[Math.floor(Math.random() * filtered_field_cells.length)];
 	}
 
+	increaseScore(person_score) {
+
+		person_score.innerHTML = +person_score.innerHTML + 1;
+	}
+
 	createScorePopup() {
 
-		let popup_btn_link = document.createElement('a'),
-			popup_btn = document.createElement('span'),
-			game_score_popup_header = document.createElement('h2'),
-			data = this.getScoreData(),
-			game_score_popup = document.createElement('div'),
-			fireworks_block_1 = document.createElement('div'),
-			fireworks_block_2 = document.createElement('div'),
-			popup_container_inner = document.createElement('div');
+		let popup_container_inner = null,
+			fireworks_block_before = document.createElement('div'),
+			fireworks_block_after = document.createElement('div');
 
-		popup_btn_link.setAttribute('href', '#');
-
-		popup_btn_link.className = 'btn-link-i';
-
-		popup_btn_link.name = 'game_score_popup_btn';
-
-		popup_btn_link.setAttribute('onclick', 'return false;');
-
-		popup_btn_link.innerHTML = 'OK';
-
-
-		popup_btn.className = 'btn-link btn-link-blue game-score-popup-btn';
-
-		popup_btn.appendChild(popup_btn_link);
-
-
-		game_score_popup_header.className = 'game-score-popup-header';
-
-		game_score_popup_header.setAttribute('name', 'game_score_popup_header');
-
-		game_score_popup_header.innerHTML = `Со счетом ${data.score} побеждает ${data.winner}!`;
-
-
-		fireworks_block_1.className = 'before';
-
-		fireworks_block_2.className = 'after';
-
-
-		game_score_popup.className = 'popup-css game-score-popup';
-
-		game_score_popup.setAttribute('name', 'game_score_popup');
-
-		game_score_popup.appendChild(game_score_popup_header);
-
-		game_score_popup.appendChild(popup_btn);
-
-
-		popup_container_inner.className = 'popup-container-inner pyro';
-
-		popup_container_inner.appendChild(fireworks_block_1);
-
-		popup_container_inner.appendChild(fireworks_block_2);
-
-		popup_container_inner.appendChild(game_score_popup);
-
-
-		this.popup = document.createElement('div');
-
-		this.popup.className = 'popup-container';
-
-		this.popup.appendChild(popup_container_inner);
-
-		this.popup.addEventListener('mousedown', (event) => {
-
-			event.preventDefault();
+		this.score_popup = new ModalWindow({
+			popup_type: 'score_popup',
+			popup_css_class: 'game-score-popup'
 		});
 
-		this.popup.addEventListener('selectstart', (event) => {
+		fireworks_block_before.className = this.fireworks_block_before_css_class;
 
-			event.preventDefault();
-		});
+		fireworks_block_after.className = this.fireworks_block_after_css_class;
 
+		popup_container_inner = this.score_popup.getPopup().querySelector('[name=popup_container_inner]');
 
-		document.addEventListener('click', (event) => {
+		popup_container_inner.classList.add(this.fireworks_container_css_class);
 
-			if (!this.popup_is_visible) return;
+		popup_container_inner.insertBefore(fireworks_block_after, popup_container_inner.firstElementChild);
 
-			let target = event.target;
+		popup_container_inner.insertBefore(fireworks_block_before, popup_container_inner.firstElementChild);
 
-			if (target.getAttribute('name') === 'game_score_popup_btn') {
+		document.addEventListener('closepopup', (event) => {
 
-				event.preventDefault();
+			if (event.detail.popup_type === 'score_popup') {
 
-				clearTimeout(this.can_close_popup_timer);
-
-				this.scorePopupHide();
-
-				this.scoreReset();
-
-				this.gameFieldClear();
-
-				this.activateButton();
-
-				this.activateInput();
-
-				return;
-			}
-
-			while (target !== document) {
-
-				if (target.getAttribute('name') === 'game_score_popup') return;
-
-				target = target.parentNode;
-			}
-
-			if (this.can_close_popup) {
-
-				this.scorePopupHide();
-
-				this.scoreReset();
-
-				this.gameFieldClear();
-
-				this.activateButton();
-
-				this.activateInput();
+				this.resetGame();
 			}
 		});
 	}
 
-	updateScorePopup() {
+	resetGame() {
 
-		let game_score_popup_header = this.popup.querySelector('[name=game_score_popup_header]'),
-			data = this.getScoreData();
+		this.scoreReset();
 
-		game_score_popup_header.innerHTML = `Со счетом ${data.score} побеждает ${data.winner}!`;
+		this.gameFieldClear();
+
+		this.activateInput();
+
+		this.activateButton();
 	}
 
 	getScoreData() {
@@ -415,24 +376,16 @@ export class MiniGame {
 
 	scorePopupShow() {
 
-		document.body.appendChild(this.popup);
+		let data = this.getScoreData(),
+			popup_content = `
+				<h2 class="game-score-popup-header">
+					Со счетом ${data.score} побеждает ${data.winner}!
+				</h2>
+			`;
 
-		this.popup_is_visible = true;
+		this.score_popup.setContent(popup_content);
 
-		// set the delay to avoid accidental pop-up closure
-		this.can_close_popup_timer = setTimeout(() => {
-
-			this.can_close_popup = true;
-		}, 1000)
-	}
-
-	scorePopupHide() {
-
-		document.body.removeChild(this.popup);
-
-		this.popup_is_visible = false;
-
-		this.can_close_popup = false;
+		this.score_popup.open();
 	}
 
 	scoreReset() {

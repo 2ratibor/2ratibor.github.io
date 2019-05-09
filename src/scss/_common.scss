@@ -52,6 +52,7 @@
 	caret-color: #ff7878 !important;
 }
 
+/*{* POPUP *}*/
 .popup-container {
 	position: fixed;
 	top: 0;
@@ -83,4 +84,16 @@
 	box-shadow: 3px 3px 7px 0 rgba(#c8c8c8, 0.5),
 				inset 0 -5px 0 0 #c1c1c1;
 	transform: translate(-50%, -50%);
+}
+
+.popup-close-btn-wrap {
+	padding-top: 22px;
+}
+
+.popup-close-btn {
+	.btn-link-i {
+		padding: 8px 22px;
+		font-size: 17px;
+		line-height: 21px;
+	}
 }

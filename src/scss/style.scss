@@ -150,18 +150,16 @@ body {
 	}
 }
 
-.game-score-popup {
+.game-score-popup,
+.message-popup {
 	width: 400px;
 	padding: 26px 26px 28px;
 	text-align: center;
 	&-header {
-		margin-bottom: 22px;
+		margin-bottom: 0;
 	}
-	&-btn {
-		.btn-link-i {
-			padding: 8px 22px;
-			font-size: 17px;
-			line-height: 21px;
-		}
-	}
+}
+
+.message-popup-header {
+	line-height: 28px;
 }
