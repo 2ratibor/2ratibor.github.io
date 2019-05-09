@@ -72,6 +72,11 @@ export class MiniGame {
 
 			event.preventDefault();
 		});
+
+		this.game_start_btn.addEventListener('click', (event) => {
+
+			event.preventDefault();
+		});
 	}
 
 	fillField() {
@@ -88,6 +93,8 @@ export class MiniGame {
 			if (i >= this.field_cell_number) {
 
 				clearInterval(interval_handler);
+
+				this.activateInput();
 
 				this.player_time_input.focus();
 
@@ -118,6 +125,7 @@ export class MiniGame {
 
 	initEvents() {
 
+		// letter lock for desktop
 		this.player_time_input.addEventListener('keypress', (event) => {
 
 			let char = this.getChar(event);
@@ -130,7 +138,12 @@ export class MiniGame {
 
 		this.player_time_input.addEventListener('keyup', (event) => {
 
-			if (event.target.value.length) {
+			let target = event.target;
+
+			// letter lock for mobile device
+			target.value = target.value.replace(/\D+/g, '');
+
+			if (target.value.length) {
 
 				this.player_time_input.classList.remove('input-invalid');
 
@@ -142,8 +155,6 @@ export class MiniGame {
 		});
 
 		this.game_start_btn.addEventListener('click', (event) => {
-
-			event.preventDefault();
 
 			let target = event.target;
 

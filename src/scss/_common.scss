@@ -20,7 +20,7 @@
 	line-height: 25px;
 	resize: none;
 	caret-color: #99cbf9;
-	color: #4d4b4b;
+	color: #333;
 	transition: border-color 0.2s ease;
 	&:focus {
 		border-color: #99cbf9;
@@ -41,10 +41,10 @@
 	&:disabled:-webkit-autofill {
 		-webkit-box-shadow: 0 0 0 30px #ececee inset;
 	}
-	&::-webkit-input-placeholder {color:#A9A9AE;}
-	&::-moz-placeholder          {color:#A9A9AE;} /*{* Firefox 19+ *}*/
-	&:-moz-placeholder           {color:#A9A9AE;} /*{* Firefox 18- *}*/
-	&:-ms-input-placeholder      {color:#A9A9AE;}
+	&::-webkit-input-placeholder {color: #737373;}
+	&::-moz-placeholder          {color: #737373;} /*{* Firefox 19+ *}*/
+	&:-moz-placeholder           {color: #737373;} /*{* Firefox 18- *}*/
+	&:-ms-input-placeholder      {color: #737373;}
 }
 
 .input-invalid {
