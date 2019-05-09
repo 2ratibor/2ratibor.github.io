@@ -334,7 +334,11 @@ export class MiniGame {
 
 		fireworks_block_before.className = this.fireworks_block_before_css_class;
 
+		fireworks_block_before.innerHTML = '&nbsp;';
+
 		fireworks_block_after.className = this.fireworks_block_after_css_class;
+
+		fireworks_block_after.innerHTML = '&nbsp;';
 
 		popup_container_inner = this.score_popup.getPopup().querySelector('[name=popup_container_inner]');
 
