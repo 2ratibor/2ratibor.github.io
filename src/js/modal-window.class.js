@@ -7,9 +7,6 @@ export class ModalWindow {
 
 		this.popup_template = `
 			<div class="popup-container-inner" name="popup_container_inner">
-				<div class="before"></div>
-				<div class="after"></div>
-				
 				<div class="popup-css ${this.popup_css_class}" name="popup">
 					<div name="popup_content"></div>
 					
