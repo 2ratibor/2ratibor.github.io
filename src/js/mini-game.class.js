@@ -182,6 +182,27 @@ export class MiniGame {
 
 			this.makeStep();
 		});
+
+		this.player_time_input.addEventListener('keydown', (event) => {
+
+			if (event.keyCode === 13) {
+
+				event.preventDefault();
+
+				if (!event.target.value.length) {
+
+					this.player_time_input.classList.add('input-invalid');
+
+					return;
+				}
+
+				this.disableInput();
+
+				this.disableButton();
+
+				this.makeStep();
+			}
+		});
 	}
 
 
