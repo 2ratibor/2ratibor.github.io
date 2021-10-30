@@ -134,9 +134,8 @@ body {
 }
 
 .game-f {
-	display: inline-block;
 	max-width: 302px;
-	margin-bottom: 4%;
+	margin: 0 auto 4%;
 	&-btn {
 		float: right;
 		.btn-link-i {
@@ -146,7 +145,11 @@ body {
 		}
 	}
 	&-input-wrap {
-		margin-right: 110px;
+		margin-right: 91px;
+	}
+	&-input {
+		font-size: 14px;
+		letter-spacing: -0.2px;
 	}
 }
 

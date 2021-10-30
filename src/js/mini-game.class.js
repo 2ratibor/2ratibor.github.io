@@ -307,7 +307,7 @@ export class MiniGame {
 
 		let popup_content = `
 				<h3 class="message-popup-header">
-					Игра окончена вничью, так как ни один из игроков не набрал нужного количества очков
+					The game ends in a draw, as none of the players scored the required number of points
 				</h3>
 			`;
 
@@ -392,7 +392,7 @@ export class MiniGame {
 		let player_score = +this.player_score.innerHTML,
 			computer_score = +this.computer_score.innerHTML,
 			score = Math.max(player_score, computer_score) + ':' + Math.min(player_score, computer_score),
-			winner = player_score > computer_score ? 'игрок' : 'компьютер';
+			winner = player_score > computer_score ? 'player' : 'computer';
 
 		return {score, winner};
 	}
@@ -403,7 +403,7 @@ export class MiniGame {
 			data = this.getScoreData(),
 			popup_content = `
 				<h2 class="game-score-popup-header">
-					Со счетом ${data.score} побеждает ${data.winner}!
+					With a score of ${data.score}, ${data.winner} wins
 				</h2>
 			`;
 
