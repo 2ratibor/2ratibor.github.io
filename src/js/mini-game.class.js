@@ -407,7 +407,7 @@ export class MiniGame {
 				</h2>
 			`;
 
-		if (data.winner === 'игрок') {
+		if (data.winner === 'player') {
 
 			popup_container_inner.classList.add(this.fireworks_container_css_class);
 		} else {
